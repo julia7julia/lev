@@ -384,6 +384,6 @@ http://192.168.11.150:8080/
 
 Верный вид страницы:
 
-![ ]([/home/mary/lev/lab1/scr.png](https://github.com/julia7julia/lev/blob/main/lab1/scr.png))
+![screen]([/home/mary/lev/lab1/scr.png](https://github.com/julia7julia/lev/blob/main/lab1/scr.png))
 
 

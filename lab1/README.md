@@ -382,6 +382,8 @@
 
 http://192.168.11.150:8080/
 
-![Верный вид страницы:](https://github.com/julia7julia/lev/blob/main/lab1/scr.png)
+Верный вид страницы:
+
+![](https://github.com/julia7julia/lev/blob/main/lab1/scr.png)
 
 

@@ -12,7 +12,11 @@
 
     sudo apt install ansible
 
+<<<<<<< HEAD
 Уубедитесь, что он корректно установлен:
+=======
+Убедитесь, что он корректно установлен:
+>>>>>>> 5475664cbdfafdc222c75fe086baa755e2a27369
 
     ansible --version 
 
@@ -386,5 +390,8 @@ http://192.168.11.150:8080/
 
 ![](https://github.com/julia7julia/lev/blob/main/lab1/scr.png)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5475664cbdfafdc222c75fe086baa755e2a27369
 

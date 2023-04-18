@@ -16,4 +16,4 @@
   become: true
   roles:
     - haproxy
-    - Keepalived
+    - keepalived

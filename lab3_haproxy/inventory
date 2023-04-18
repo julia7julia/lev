@@ -3,6 +3,6 @@ web1 ansible_host=192.168.11.121
 web2 ansible_host=192.168.11.122
 
 [haproxy-servers]
-haproxy1 ansible_host=192.168.11.123 pamagite=101    
-haproxy2 ansible_host=192.168.11.124 pamagite=100
+haproxy1 ansible_host=192.168.11.123 prior=101    
+haproxy2 ansible_host=192.168.11.124 prior=100
 

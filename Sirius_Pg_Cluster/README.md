@@ -22,3 +22,5 @@
     patronictl -c /opt/app/patroni/etc/postgresql.yml list
   
 Если всё работает:
+
+![](https://github.com/julia7julia/lev/blob/main/lab1/scr.png)

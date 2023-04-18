@@ -23,4 +23,4 @@
   
 Если всё работает:
 
-![](https://github.com/julia7julia/lev/blob/main/lab1/scr.png)
+![](https://github.com/julia7julia/lev/blob/main/Sirius_Pg_Cluster/4.png)

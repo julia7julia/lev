@@ -12,10 +12,7 @@
 
     sudo apt install ansible
 
-<<<<<<< HEAD
-=======
 Убедитесь, что он корректно установлен:
->>>>>>> 5475664cbdfafdc222c75fe086baa755e2a27369
 
     ansible --version 
 

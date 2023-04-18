@@ -1,0 +1,71 @@
+---
+# tasks file for roles/folder
+- name: create directory "{{ pg_data }}"
+  ansible.builtin.file:
+    path: "{{ pg_data }}"
+    state: directory
+    recurse: yes
+    owner: postgres
+    group: postgres
+    mode: '0700'
+  tags: 
+    - create_directory
+
+- name: create directory "{{ pg_wal }}"
+  ansible.builtin.file:
+    path: "{{ pg_wal }}"
+    state: directory
+    recurse: yes
+    owner: postgres
+    group: postgres
+    mode: '0700'
+  tags: 
+    - create_directory
+
+- name: Mount up device by label
+  ansible.posix.mount:
+    path: "{{ pg_data }}"
+    src: /dev/pg/pg_data
+    fstype: ext4
+    state: mounted
+  tags:
+    - mount
+
+- name: Mount up device by label
+  ansible.posix.mount:
+    path: "{{ pg_wal }}"
+    src: /dev/pg/pg_wal
+    fstype: ext4
+    state: mounted
+  tags:
+    - mount
+
+- name: chown directory /pgsql
+  ansible.builtin.file:
+    path: /pgsql
+    state: directory
+    owner: postgres
+    group: postgres
+    mode: '0700'
+  tags: 
+    - chown_directory
+
+- name: chown directory /pgsql/pg_data
+  ansible.builtin.file:
+    path: "{{ pg_data }}"
+    state: directory
+    owner: postgres
+    group: postgres
+    mode: '0700'
+  tags: 
+    - chown_directory
+
+- name: chown directory /pgsql/pg_wal
+  ansible.builtin.file:
+    path: "{{ pg_wal }}"
+    state: directory
+    owner: postgres
+    group: postgres
+    mode: '0700'
+  tags: 
+    - chown_directory

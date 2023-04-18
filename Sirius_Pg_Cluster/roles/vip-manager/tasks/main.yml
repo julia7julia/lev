@@ -1,0 +1,32 @@
+---
+# tasks file for roles/vip-manager
+- name: Install vip-manager
+  yum:
+    name: 
+      - vip-manager
+    disable_gpg_check: yes
+    state: present
+  tags:
+    - vip_install
+
+- name: Read gossip encryption key from previously boostrapped server
+  shell: 'cat /etc/consul.d/consul.hcl | grep "^encrypt = " | sed -E ''s/encrypt = "(.+)",?/\1/'' | sed ''s/^ *//;s/ *$//'''
+  register: consul_key_read
+  changed_when: false
+  tags: 
+    - vip_conf
+
+- name: Set fact gossip encryption key from existing configuration
+  set_fact:
+    consul_raw_key: "{{ consul_key_read.stdout }}"
+  when: consul_key_read.stdout != ''
+  tags: 
+    - vip_conf
+
+- name: Template a file to vip-manager
+  ansible.builtin.template:
+    src: vip-manager.yml.j2
+    dest: /etc/default/vip-manager.yml
+  notify: restart vip-manager
+  tags: 
+    - vip_conf

@@ -1,0 +1,40 @@
+---
+# tasks file for roles/disks
+- name: Create or resize a volume group on top of /dev/sdb,/dev/sdc.
+  community.general.lvg:
+    vg: pg
+    pvs: /dev/sdb,/dev/sdc
+  tags:
+    - disks
+
+- name: Create lv pg_data
+  community.general.lvol:
+    vg: pg
+    lv: pg_data
+    size: 100%PVS
+    pvs: /dev/sdb
+  tags:
+    - disks
+
+- name: Create lv pg_wal
+  community.general.lvol:
+    vg: pg
+    lv: pg_wal
+    size: 100%PVS
+    pvs: /dev/sdc
+  tags:
+    - disks
+
+- name: Create a ext4 filesystem on /dev/pg/pg_data
+  community.general.filesystem:
+    fstype: ext4
+    dev: /dev/pg/pg_data
+  tags: 
+    - mkfs
+
+- name: Create a ext2 filesystem on /dev/pg/pg_wal
+  community.general.filesystem:
+    fstype: ext2
+    dev: /dev/pg/pg_wal
+  tags: 
+    - mkfs

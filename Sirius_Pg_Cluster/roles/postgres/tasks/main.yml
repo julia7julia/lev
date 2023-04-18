@@ -1,0 +1,53 @@
+---
+# tasks file for roles/postgres
+- name: Copy patroni
+  copy:
+    src: patroni-2.1.3-1.el7.x86_64.rpm
+    dest: /tmp
+  tags:
+    - patroni_install
+
+- name: Install patroni rpm
+  yum:
+    name: 
+      - /tmp/patroni-2.1.3-1.el7.x86_64.rpm 
+      - patroni-consul
+    disable_gpg_check: yes
+    state: present
+  tags:
+    - patroni_install
+
+- ansible.builtin.include_role:
+    name: folder
+  tags:
+    - create_directory
+    - mount
+    - chown_directory
+
+- name: create directory "{{ patroni_log }}"
+  ansible.builtin.file:
+    path: "{{ patroni_log }}"
+    state: directory
+    owner: postgres
+    group: postgres
+    mode: '0700'
+  tags: 
+    - create_patronilog
+
+- name: Template a file to "{{ patroni_conf }}"
+  ansible.builtin.template:
+    src: postgresql.yml.j2
+    dest: "{{ patroni_conf }}"
+    owner: postgres
+    group: postgres
+  tags: 
+    - patroni_conf
+
+- name: Make sure a service unit is running
+  ansible.builtin.systemd:
+    state: started
+    name: patroni
+    enabled: true
+  tags: 
+    - start_patroni
+

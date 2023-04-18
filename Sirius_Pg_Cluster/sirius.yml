@@ -1,0 +1,15 @@
+# - name: Install consul
+#   hosts: sirius_consul
+#   become: yes
+#   roles:
+#     - consul
+
+- name: create disks
+  hosts: sirius_postgres
+  become: yes
+  roles:
+#    - disks
+ #   - postgres
+    - vip-manager
+
+
